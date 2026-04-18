@@ -1,0 +1,23 @@
+# .claudeignore
+node_modules/
+frontend/.next/
+frontend/node_modules/
+dist/
+build/
+.git/
+*.lock
+__pycache__/
+*.pyc
+data/raw/
+data/processed/
+models/
+airflow/logs/
+airflow/
+.dbt/
+coverage/
+*.min.js
+*.map
+*.egg-info/
+.pytest_cache/
+htmlcov/
+chroma/

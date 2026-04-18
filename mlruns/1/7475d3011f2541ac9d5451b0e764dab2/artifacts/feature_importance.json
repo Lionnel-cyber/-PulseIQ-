@@ -1,0 +1,16 @@
+{
+  "bls_jobless_claims_delta": 0.0,
+  "bls_unemployment_rate": 0.0,
+  "census_median_income": 0.0,
+  "census_poverty_baseline": 0.0,
+  "data_quality_score": 0.0,
+  "fred_cpi_delta": 0.0,
+  "fred_delinquency_rate": 0.0,
+  "fred_mortgage_rate_delta": 0.0,
+  "news_article_count": 0.0,
+  "news_sentiment_score": 0.0,
+  "openweather_severity_index": 0.0,
+  "stale_source_count": 0.0,
+  "trends_search_delta": 0.0,
+  "trends_search_score": 0.0
+}

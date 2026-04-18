@@ -1,0 +1,9 @@
+pulseiq:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: data/processed/pulseiq.db
+      threads: 4
+      settings:
+        temp_directory: data/processed/.tmp

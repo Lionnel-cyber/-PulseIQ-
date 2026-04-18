@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0c0f;
+  --surface: #0f1318;
+  --surface2: #141920;
+  --border: #1e2730;
+  --border2: #253040;
+  --accent: #00d4aa;
+  --accent2: #0088ff;
+  --warn: #f5a623;
+  --danger: #e53e3e;
+  --text: #c8d8e8;
+  --text2: #6a8099;
+  --text3: #3a5068;
+  --mono: 'Courier New', monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+@keyframes piq-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: piq-blink 2s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes scan {
+  0%   { top: 0%; }
+  100% { top: 100%; }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 212, 170, 0.08);
+  pointer-events: none;
+  animation: scan 4s linear infinite;
+}
