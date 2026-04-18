@@ -13,16 +13,6 @@
 
 ---
 
-## ✓ Live Now: 11 US Metros
-
-**PulseIQ is live.** Economic stress intelligence updating daily for Atlanta, Boston, Chicago, Dallas, Detroit, Los Angeles, Miami, New York, Philadelphia, Seattle, and Washington DC.
-
-**Built for:** Nonprofits, city planners, community banks, and emergency response teams who need to know *before* the headlines break.
-
-[→ Live Demo](https://pulseiq.app) | [→ API Docs](https://api.pulseiq.app/docs)
-
----
-
 ## The Problem
 
 Banks, nonprofits, and city planners make critical resource allocation decisions
