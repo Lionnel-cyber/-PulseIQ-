@@ -1,0 +1,59 @@
+INFO:     Will watch for changes in these directories: ['C:\\Users\\USER\\OneDrive\\Desktop\\My Great Projects\\PulseIQ']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [12396] using WatchFiles
+INFO:     Started server process [2676]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+forrtl: error (200): program aborting due to window-CLOSE event
+Image              PC                Routine            Line        Source             
+KERNELBASE.dll     00007FFE791CA3CD  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFE7995E8D7  Unknown               Unknown  Unknown
+ntdll.dll          00007FFE7BA6C3FC  Unknown               Unknown  Unknown
+Fatal Python error: PyEval_SaveThread: the function must be called with the GIL held, but the GIL is released (the current Python thread state is NULL)
+Python runtime state: initialized
+
+Thread 0x00004630 (most recent call first):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 327 in wait
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\queue.py", line 171 in get
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\anyio\_backends\_asyncio.py", line 965 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x000016b0 (most recent call first):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 327 in wait
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\queue.py", line 171 in get
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\anyio\_backends\_asyncio.py", line 965 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x00002c3c (most recent call first):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 331 in wait
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 629 in wait
+  File "C:\Users\USER\AppData\Roaming\Python\Python311\site-packages\tqdm\_monitor.py", line 60 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x00004438 (most recent call first):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 331 in wait
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\queue.py", line 180 in get
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\posthog\consumer.py", line 107 in next
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\posthog\consumer.py", line 76 in upload
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\posthog\consumer.py", line 65 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x00002e64 (most recent call first):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\selectors.py", line 314 in _select
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\selectors.py", line 323 in select
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1884 in _run_once
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607 in run_forever
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640 in run_until_complete
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\uvicorn\server.py", line 66 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\uvicorn\_subprocess.py", line 80 in subprocess_started
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 108 in run
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\process.py", line 314 in _bootstrap
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 135 in _main
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\spawn.py", line 122 in spawn_main
+  File "<string>", line 1 in <module>

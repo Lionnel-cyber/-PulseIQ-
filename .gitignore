@@ -1,0 +1,36 @@
+# Data lake and processed database files (large, local-only, reproduced by pipeline)
+data/
+
+# MLflow model artifacts (large, reproduced by training pipeline)
+models/
+
+# Secrets — never committed
+.env
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# dbt local state (profiles.yml, run results, partial parse cache)
+.dbt/
+
+# Airflow runtime directories (auto-created by Airflow on first run)
+airflow/logs/
+airflow/plugins/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python packaging artifacts
+*.egg-info/
+dist/
+build/
+
+# Test and coverage output
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*

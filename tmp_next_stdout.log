@@ -1,0 +1,15 @@
+
+> frontend@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://169.254.43.185:3000
+- Environments: .env.local
+✓ Ready in 1912ms
+Creating turbopack project {
+  dir: 'C:\\Users\\USER\\OneDrive\\Desktop\\My Great Projects\\PulseIQ\\frontend',
+  testMode: true
+}
+
+[?25h

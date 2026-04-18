@@ -1,0 +1,53 @@
+# =============================================================================
+# PulseIQ — Python Dependencies
+# =============================================================================
+
+# Orchestration
+apache-airflow>=2.8,<3.0
+
+# Transformation
+dbt-core>=1.7,<2.0
+dbt-duckdb
+
+# Storage
+duckdb
+
+# ML
+xgboost
+shap
+mlflow
+
+# RAG
+langchain
+langchain-community
+langchain-openai
+chromadb
+sentence-transformers
+
+# API
+fastapi>=0.111,<1.0
+uvicorn[standard]
+
+# Dashboard
+streamlit
+plotly
+
+# Data connectors
+praw
+requests
+feedparser
+
+# Data processing
+pandas
+
+# Validation & config
+pydantic>=2,<3
+python-dotenv
+
+# Resilience
+tenacity
+
+# Testing
+pytest
+pytest-cov
+responses

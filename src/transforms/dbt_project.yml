@@ -1,0 +1,24 @@
+name: "pulseiq"
+version: "1.0.0"
+config-version: 2
+
+profile: "pulseiq"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  pulseiq:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

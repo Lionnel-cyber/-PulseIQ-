@@ -1,0 +1,128 @@
+version: "3.8"
+
+# ---------------------------------------------------------------------------
+# Shared config applied to all Airflow services via YAML anchor
+# ---------------------------------------------------------------------------
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.8.0
+  env_file:
+    - .env
+  environment: &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__FERNET_KEY: ""
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth"
+    # Allows DAGs to do `from src.connectors import ...`
+    PYTHONPATH: /opt/airflow
+    # Override relative .env paths with container-absolute paths
+    DUCKDB_PATH: /opt/airflow/data/processed/pulseiq.db
+    CHROMADB_PATH: /opt/airflow/data/processed/chroma/
+    MLFLOW_TRACKING_URI: http://mlflow:5000
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./src:/opt/airflow/src
+    - ./data:/opt/airflow/data
+    - airflow-logs:/opt/airflow/logs
+    - airflow-plugins:/opt/airflow/plugins
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+  # ---------------------------------------------------------------------------
+  # Airflow metadata database
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # One-shot init: migrate DB schema and create admin user, then exit
+  # ---------------------------------------------------------------------------
+  airflow-init:
+    <<: *airflow-common
+    command:
+      - bash
+      - -c
+      - >-
+        airflow db migrate &&
+        airflow users create --username admin --password admin
+        --firstname Admin --lastname User --role Admin --email admin@pulseiq.local
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_MIGRATE: "true"
+    restart: on-failure
+
+  # ---------------------------------------------------------------------------
+  # Airflow webserver — UI available at http://localhost:8080 (admin/admin)
+  # ---------------------------------------------------------------------------
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+
+  # ---------------------------------------------------------------------------
+  # Airflow scheduler — triggers and monitors DAG runs
+  # ---------------------------------------------------------------------------
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    restart: unless-stopped
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+
+  # ---------------------------------------------------------------------------
+  # MLflow — experiment tracking and model artifact registry
+  # UI available at http://localhost:5000
+  # ---------------------------------------------------------------------------
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    env_file:
+      - .env
+    command: >
+      mlflow server
+        --host 0.0.0.0
+        --port 5000
+        --backend-store-uri sqlite:////mlflow/mlruns.db
+        --default-artifact-root /mlflow/artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/mlflow
+    restart: unless-stopped
+
+volumes:
+  postgres-db-volume:
+  airflow-logs:
+  airflow-plugins:
+  mlflow-data:
